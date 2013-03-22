@@ -252,7 +252,30 @@ package can run. Added "Working USB Sticks" because, it seems that the Cruzer Fi
 		- upgrade the firmware with the file you downloaded above
 		- the router now reboots, again go 192.168.1.1 and set a password.
 		- now you can ssh into the router via terminal
-		- make the router internet ready: ... to be filled up ...
+		- make the router internet ready > open terminal type: 
+			ssh root@192.168.1.1
+			vi /etc/config/network
+			press 'i' to edit, and ONLY change the 'lan' interface settings as below:
+			config interface 'lan'                                                                    
+       			option ifname 'eth0'                                                              
+       			option type 'bridge'                                                              
+        		option proto 'static'                                                             
+        		option ipaddr '192.168.2.111'                                                       
+        		option netmask '255.255.255.0'                                                    
+        		option gateway '192.168.2.1'                                                     
+        		list dns '192.168.2.1'                                                           
+        		list dns '8.8.8.8'
+
+			make sure the gateway and first list dns ip's are your internet modem/routers ip!
+			the 'ipaddr' should be different from your internet modem/router's 
+			make sure both the offlineArt router and your internet modem/router are on the same subnet ('2' in the example above)
+		
+		- connect your internet modem/router from a 'lan'/'switch' port to your offlineArt routers 'wan'/'internet' port with a network cable.
+		- reboot your offlineArt router (type reboot in the terminal)
+		- wait, connect to the offlineArt router again via the ip set above (option ipaddr '192.168.2.111' in the example).
+		- when connected, try if you can ping google by typing 'ping google.com' in the terminal. If it can reach google, your set! Next:
+			
+		
 		- type: 
 			opkg update
 			opkg install http://piratebox.aod-rpg.de/offlineArt_0.1.2_all.ipk
