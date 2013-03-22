@@ -228,7 +228,39 @@ package can run. Added "Working USB Sticks" because, it seems that the Cruzer Fi
 
    x. Install steps
 
-     ... to fill up...
+	xx. Installing on the TP-Link WR842ND v1.0
+		
+		xxx. Preparing the USB stick
+		The content of your offlineArt router is 'hosted' on a USB stick that goes into the offlineArt router. This needs to be prepared first:
+
+		- cd into a tmp folder on your (linux) computer
+		- clone the offlineArt repo in here and make the USB stick image:
+			 $ git clone git@github.com:MaStr/OFFLINEART.git
+		 	 $ cd OFFLINEART/custom_image/
+			 $ make
+			 
+		After building is finished, copy the file 'offlineArt_0.1_img.gz' located in 'OFFLINEART/custom_image/' to your single-partition FAT32 formatted USB stick.
+		- put the USB stick in your router.
+
+
+		xxx. Preparing your router
+		- download the following router firmware:
+			http://downloads.openwrt.org/attitude_adjustment/12.09-beta/ar71xx/generic/openwrt-ar71xx-generic-tl-wr842n-v1-squashfs-factory.bin
+
+		- turn of computer wireless, and connect the router via ethernet.
+		- open browser, goto 192.168.1.1, username:pass > admin:admin
+		- upgrade the firmware with the file you downloaded above
+		- the router now reboots, again go 192.168.1.1 and set a password.
+		- now you can ssh into the router via terminal
+		- make the router internet ready: ... to be filled up ...
+		- type: 
+			opkg update
+			opkg install http://piratebox.aod-rpg.de/offlineArt_0.1.2_all.ipk
+		- ignore any 'chown' ownership errors and follow the instructions (remove wan cable, reboot)
+		- done!
+				
+
+		
 
    x. Customization hints                    
 
